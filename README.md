@@ -8,12 +8,12 @@
 	UITableView *tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
     [view addSubview:tableView];
  
-    tableView.ghDelegate = self;
-    tableView.registerCells = @{ @"Model" : [tableViewCell class] };
+    tableView.gh_delegate = self;
+    tableView.gh_registerCells = @{ @"Model" : [tableViewCell class] };
  
     Model *modle1 = [[myModel alloc] init];
     Model *modle2 = [[myModel alloc] init];
-    tableView.dataArray = @[@[modle1, modle2 ], @[modle1, modle2]];
+    tableView.gh_dataArray = @[@[modle1, modle2 ], @[modle1, modle2]];
  
     [tableView reloadData];
     注：Model是数据模型的类名，tableViewCell必须是遵守GHTableViewCellDelegate协议的UITableViewCell的子类；tableView.dataArray 是一个二维数组
@@ -21,7 +21,7 @@
  2.UITableViewCell点击的回调提供代理和block两种方式
  
     2.1 block:
-    tableView.cellDidSelectBlock = ^(id model, NSIndexPath *indexPath) {
+    tableView.gh_cellDidSelectBlock = ^(id model, NSIndexPath *indexPath) {
  
     };
     2.2 delegate:
@@ -38,7 +38,7 @@
  
     }
     3.2 block
-    tableView.cellDetailEventBlock = ^(id model, NSUInteger type, NSIndexPath *indexPath){
+    tableView.gh_cellDetailEventBlock = ^(id model, NSUInteger type, NSIndexPath *indexPath){
  
     };
     注：UITableViewCell中对应的事件要使用cell的delegate调用GHTableViewCellEventDelegate协议中
