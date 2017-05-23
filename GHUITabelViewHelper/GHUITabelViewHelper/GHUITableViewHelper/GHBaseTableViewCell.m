@@ -19,19 +19,41 @@
 
 - (void)addTopBorderLine
 {
-    [self.contentView addSubview:self.topBorderView];
+    if (_topBorderView.superview) {
+        return;
+    }
+    
+    [self addSubview:self.topBorderView];
     
     NSDictionary *views = @{ @"topBorderView" : self.topBorderView };
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[topBorderView]-0-|" options:0 metrics:nil views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[topBorderView(0.5)]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[topBorderView]-0-|" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[topBorderView(0.5)]" options:0 metrics:nil views:views]];
 }
 
 - (void)addBottomBorderLine
 {
+    if (_bottomBorderView.superview) {
+        return;
+    }
+    
     [self addSubview:self.bottomBorderView];
     NSDictionary *views = @{ @"bottomBorderView" : self.bottomBorderView };
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bottomBorderView]-0-|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottomBorderView(0.5)]-0-|" options:0 metrics:nil views:views]];
+}
+
+- (void)removeTopBorderLine
+{
+    if (_topBorderView.superview) {
+        [self.topBorderView removeFromSuperview];
+    }
+}
+
+- (void)removeBottomBorderLine
+{
+    if (_bottomBorderView.superview) {
+        [self.bottomBorderView removeFromSuperview];
+    }
 }
 
 #pragma mark -

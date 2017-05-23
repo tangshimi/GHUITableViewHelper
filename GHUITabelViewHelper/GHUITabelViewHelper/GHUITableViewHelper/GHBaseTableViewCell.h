@@ -12,13 +12,17 @@
 @interface GHBaseTableViewCell : UITableViewCell <GHTableViewCellDelegate>
 
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
-@property (nonatomic, assign) BOOL firstCell;
-@property (nonatomic, assign) BOOL lastCell;
+@property (nonatomic, strong) NSNumber *firstCell;
+@property (nonatomic, strong) NSNumber *lastCell;
 @property (nonatomic, weak) id<GHTableViewCellEventDelegate> delegate;
 @property (nonatomic, strong) id model;
 
 - (void)addTopBorderLine;
 
 - (void)addBottomBorderLine;
+
+- (void)removeTopBorderLine;
+
+- (void)removeBottomBorderLine;
 
 @end
